@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Thống kê mô hình học</title>
+<style>
+	body{
+		margin-left: 27%;
+	    height: 100%;
+	    font-size: 20px;
+	    margin-top: 10%;
+	}
+	table{
+		width: 60%;
+	    text-align: center;
+    	table-layout: fixed;
+	}
+	th, td {
+    	width: auto;
+	}
+	.cotdoc{
+		text-align: right;
+	}
+</style>
+</head>
+<body>
+	<form th:action="@{/thongke}">
+		<label>Chọn mô hình:
+			<select class="" id="mohinh_id" name="mohinh_id">
+				<option th:each="mohinh : ${session.lmhh}" 
+				th:value="${mohinh.id}" 
+				th:text="${mohinh.ten}" 
+				th:selected="${mohinh.id == session.mohinh_id}"></option>
+			</select>
+		</label> 
+		<button type="submit">Xem thống kê</button>
+		
+	</br>
+	<label>Thời gian trung bình để trích xuất thông tin 1 CCCD: </label> 
+		<span th:text="${session.tk.thoiGianTrungBinh} + ' ms.'"></span></br></br>
+	
+	</form>
+		<table border="1">
+			<thead>
+				<th>Trường</th>
+				<th >Độ phủ</th>
+				<th >Độ chính xác</th>
+				<th>Xem chi tiết sai khác độ chính xác</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Số</td>
+					<td th:text="${session.tk.doPhu['so']}" class="cotdoc"></td>
+					<td th:text="${session.tk.doChinhXac['so']}" class="cotdoc"></td>
+					<td>
+						<form th:action="@{/xemchitiet}">
+							<input type="hidden" value="s" name="muc">
+							<button type="submit">Xem</button>
+						</form> 
+					</td>
+				</tr>
+				
+				<tr>
+					<td>Tên</td>
+					<td th:text="${session.tk.doPhu['ten']}" class="cotdoc"></td>
+					<td th:text="${session.tk.doChinhXac['ten']}" class="cotdoc"></td>
+					<td>
+						<form th:action="@{/xemchitiet}">
+							<input type="hidden" value="t" name="muc">
+							<button type="submit">Xem</button>
+						</form> 
+					</td>
+				</tr>
+				
+				<tr>
+					<td>Ngày sinh</td>
+					<td th:text="${session.tk.doPhu['ngaysinh']}" class="cotdoc"></td>
+					<td th:text="${session.tk.doChinhXac['ngaysinh']}" class="cotdoc"></td>
+					<td>
+						<form th:action="@{/xemchitiet}">
+							<input type="hidden" value="ns" name="muc">
+							<button type="submit">Xem</button>
+						</form> 
+					</td>
+				</tr>
+				
+				<tr>
+					<td>Giới tính</td>
+					<td th:text="${session.tk.doPhu['gioitinh']}" class="cotdoc"></td>
+					<td th:text="${session.tk.doChinhXac['gioitinh']}" class="cotdoc"></td>
+					<td>
+						<form th:action="@{/xemchitiet}">
+							<input type="hidden" value="gt" name="muc">
+							<button type="submit">Xem</button>
+						</form> 
+					</td>
+				</tr>
+				
+				<tr>
+					<td>Quốc tịch</td>
+					<td th:text="${session.tk.doPhu['quoctich']}" class="cotdoc"></td>
+					<td th:text="${session.tk.doChinhXac['quoctich']}" class="cotdoc"></td>
+					<td>
+						<form th:action="@{/xemchitiet}">
+							<input type="hidden" value="qt" name="muc">
+							<button type="submit">Xem</button>
+						</form> 
+					</td>
+				</tr>
+				
+				<tr>
+					<td>Quê quán</td>
+					<td th:text="${session.tk.doPhu['quequan']}" class="cotdoc"></td>
+					<td th:text="${session.tk.doChinhXac['quequan']}" class="cotdoc"></td>
+					<td>
+						<form th:action="@{/xemchitiet}">
+							<input type="hidden" value="qq" name="muc">
+							<button type="submit">Xem</button>
+						</form> 
+					</td>
+				</tr>
+				
+				<tr>
+					<td >Nơi thường trú</td>
+					<td th:text="${session.tk.doPhu['noithuongtru']}" class="cotdoc"></td>
+					<td th:text="${session.tk.doChinhXac['noithuongtru']}" class="cotdoc"></td>
+					<td>
+						<form th:action="@{/xemchitiet}">
+							<input type="hidden" value="ntt" name="muc">
+							<button type="submit">Xem</button>
+						</form> 
+					</td>
+				</tr>
+				
+			</tbody>
+		</table>
+</body>
+</html>

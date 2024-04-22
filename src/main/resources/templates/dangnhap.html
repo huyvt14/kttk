@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Trang đăng nhập</title>
+<style>
+	.khung{
+		position: absolute;
+        top: 20%;
+        left: 40%;
+        font-size: 20px;
+	}
+</style>
+</head>
+<body>
+	<div class="khung">
+		<h1>Đăng nhập</h1>
+		<form th:action="@{/dangnhap}" method="post" >
+			<table>
+				<tr>
+					<td>Tên đăng nhập</td>
+					<td><input type="text" name="tenDangNhap" ></td>
+				</tr>
+				<tr>
+					<td>Mật khẩu</td>
+					<td><input type="password" name="matKhau" ></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><button type="submit">Đăng nhập</button></td>
+				</tr>
+			</table>
+			<div th:if="${param.error}">
+        		<p style="color: red;">Invalid username or password.</p>
+    		</div>
+		</form>
+	</div>
+	
+</body>
+</html>

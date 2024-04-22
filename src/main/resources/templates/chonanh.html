@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Chọn ảnh</title>
+<style>
+	body{
+		margin-top: 10%;
+		margin-left:20%;
+    	font-size: 25px;
+	}
+</style>
+
+</head>
+<body>
+
+	<form th:action="@{/chonanh/cccd}" enctype="multipart/form-data" method="post">
+		<label>Chọn đường dẫn tới ảnh:</label>
+		<input type="file" name="file">
+		<button type="submit">Tiếp tục</button>
+	</form>
+
+</body>
+</html>

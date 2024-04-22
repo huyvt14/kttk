@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Xem chi tiết</title>
+    <style>
+		body{
+			margin: 0;
+		    padding: 0;
+		    height : 100%;
+		    font-size: 20px;
+		    margin-top: 10%;
+		}
+		table {
+			margin : auto;
+			width : 60%;
+			text-align: center;
+		}
+		h1{
+			 text-align: center;
+		}
+</style>
+</head>
+<body>
+	<h1 th:if="${#lists.isEmpty(session.lcc)}">Không có sai khác nào!</h1>
+    <table border="1" th:if="${not #lists.isEmpty(session.lcc)}">
+        <tr>
+            <th>Thông tin trên CCCD</th>
+            <th>Thông tin máy đọc được</th>
+        </tr>
+        <tr th:each="cc : ${session.lcc}">
+		    <!-- Số -->
+		    <td th:if="${session.m == 's'}" th:text="${cc.cccd.so}"></td>
+		    <td th:text="${cc.so}" th:if="${session.m == 's'}"></td>
+		    
+		    <!-- Tên -->
+		    <td th:if="${session.m == 't'}" th:text="${cc.cccd.ten}"></td>
+		    <td th:text="${cc.ten}" th:if="${session.m == 't'}"></td>
+		    
+		    <!-- Giới tính -->
+		    <td th:if="${session.m == 'gt'}" th:text="${cc.cccd.gioiTinh}"></td>
+		    <td th:text="${cc.gioiTinh}" th:if="${session.m == 'gt'}"></td>
+		    
+		    <!-- Quốc tịch -->
+		    <td th:if="${session.m == 'qt'}" th:text="${cc.cccd.quocTich}"></td>
+		    <td th:text="${cc.quocTich}" th:if="${session.m == 'qt'}"></td>
+		   
+		    <!-- Quê quán -->
+		    <td th:if="${session.m == 'qq'}" th:text="${cc.cccd.queQuan}"></td>
+		    <td th:text="${cc.queQuan}" th:if="${session.m == 'qq'}"></td>
+		    
+		    <!-- Nơi thường trú -->
+		    <td th:if="${session.m == 'ntt'}" th:text="${cc.cccd.noiThuongTru}"></td>
+		    <td th:text="${cc.noiThuonTru}" th:if="${session.m == 'ntt'}"></td>
+		    
+		
+		    <!-- Ngày sinh -->
+		    <td th:if="${session.m == 'ns'}" th:text="${cc.cccd.ngaySinh}"></td>
+		    <td th:text="${cc.ngaySinh}" th:if="${session.m == 'ns'}"></td>
+		    
+		</tr>
+    </table>
+</body>
+</html>

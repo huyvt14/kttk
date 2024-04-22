@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Chỉnh sửa thông tin</title>
+</head>
+<style>
+    /* CSS để căn giữa phần hiển thị */
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .left {
+        flex: 1;
+    }
+    .right {
+        flex: 1;
+    }
+    /* CSS để hiển thị ảnh CCCD */
+    .cccd-image {
+    	margin-left:40%;
+        max-width: 300px;
+        max-height: 100%;
+    }
+    /* CSS để hiển thị mỗi trường trên một dòng */
+    .cccd-info input {
+        display: block;
+        margin-bottom: 10px; /* Để tạo khoảng cách giữa các input */
+        
+    }
+    input{
+    	width: 600px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="left">
+            <!-- Ảnh CCCD -->
+            <img class="cccd-image" th:src="@{'/dem/'+${session.fileName}}" alt="Ảnh CCCD">
+        </div>
+        <div class="right">
+	        <form th:object="${cc}" method="post" th:action="@{/cccd}">
+	            <!-- Các trường thông tin CCCD -->
+	            <div class="cccd-info">
+	            	<label>Số:</label></br>
+	                <input type="text" th:field="*{so}" th:value="${cccd}">
+	                <label>Họ tên:</label></br>
+	                <input type="text" th:field="*{ten}" th:value="${cccd}">
+	                <label>Ngày sinh:</label></br>
+	                <input type="text" th:field="*{ngaySinh}" th:value="${cccd}">
+	                <label>Giới tính:</label></br>
+	                <input type="text" th:field="*{gioiTinh}" th:value="${cccd}">
+	                <label>Quốc tịch:</label></br>
+	                <input type="text" th:field="*{quocTich}" th:value="${cccd}">
+	                <label>Quê quán:</label></br>
+	                <input type="text" th:field="*{queQuan}" th:value="${cccd}">
+	                <label>Nơi thường trú:</label></br>
+	                <input type="text" th:field="*{noiThuonTru}" th:value="${cccd}">
+	            </div>
+	            <!-- Nút lưu -->
+	            <button type="submit">Lưu</button>
+	        </form>
+	        <!-- Form Hủy -->
+	        <form th:action="@{/cccd}">
+	            <button type="submit">Hủy</button>
+	        </form>
+        </div>
+    </div>
+</body>
+</html>
